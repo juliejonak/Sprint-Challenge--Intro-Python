@@ -5,6 +5,7 @@ class Oop2Tests(unittest.TestCase):
   def setUp(self):
     self.ground_vehicle = GroundVehicle()
     self.motorcycle = Motorcycle()
+    print('ground vehicle: ', self.ground_vehicle)
 
   def test_motorcycle_inheritance(self):
     self.assertTrue(isinstance(self.motorcycle, GroundVehicle))
