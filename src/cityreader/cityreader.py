@@ -54,7 +54,7 @@ cityreader(cities)
 # with the `cities` list that holds all the City instances from the `cityreader`
 # function. This function should output all the cities that fall within the 
 # coordinate square.
-#
+
 # Be aware that the user could specify either a lower-left/upper-right pair of
 # coordinates, or an upper-left/lower-right pair of coordinates. Hint: normalize
 # the input data so that it's always one or the other, then search for cities.
@@ -75,14 +75,43 @@ cityreader(cities)
 # Tucson: (32.1558,-110.8777)
 # Salt Lake City: (40.7774,-111.9301)
 
+# must fall within range of lat1 to lat2 AND range of lon1 to lon2
+
 # TODO Get latitude and longitude values from the user
 
 def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
-  # within will hold the cities that fall within the specified region
   within = []
+  latitude1 = 0
+  latitude2 = 0
+  longitude1 = 0
+  longitude2 = 0
+
+  if lat2 > lat1:
+    latitude1 = float(lat2)
+    latitude2 = float(lat1)
+  else:
+    latitude1 = float(lat1)
+    latitude2 = float(lat2)
+
+  if lon2 > lon1:
+    longitude1 = float(lon2)
+    longitude2 = float(lon1)
+  else:
+    longitude1 = float(lon1)
+    longitude2 = float(lon2)
+  
+  for i in range(0, len(cities)):
+    if(latitude2 <= float(cities[i].lat) <= latitude1):
+      print('Within the given latitude: ', cities[i].name)
+
+    if(longitude2 <= cities[i].lon <= longitude1):
+      print('Within the given longitude: ', cities[i].name)
+    
+    if(latitude2 <= cities[i].lat <= latitude1 and longitude2 <= cities[i].lon <= longitude1):
+      within.append(cities[i])
+
 
   # TODO Ensure that the lat and lon valuse are all floats
   # Go through each city and check to see if it falls within 
   # the specified coordinates.
-
   return within
